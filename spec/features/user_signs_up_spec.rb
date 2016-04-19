@@ -15,7 +15,6 @@ feature "user signs up" do
     expect(page).to have_content("Sign Out")
   end
 
-
   scenario "required information not specified" do
     visit root_path
     click_link "Sign Up"
