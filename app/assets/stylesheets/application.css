@@ -62,11 +62,22 @@
     font-weight: 100;
     height: 50px;
     font-size: 18px;
-    background-color: #FFCC99;
     border: 0;
     color: #fff;
     z-index: 0;
    }
+
+   .success {
+     position: relative;
+     font-family: "Roboto";
+     padding: 10px;
+     font-weight: 100;
+     height: 50px;
+     font-size: 18px;
+     border: 0;
+     color: #fff;
+     z-index: 0;
+    }
 
    .dropbtn {
        background-color: #2A282B;

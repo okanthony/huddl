@@ -14,11 +14,14 @@
 <body>
 
  <div class="message">
-  <% if flash.any? %>
-    <div class="alert callout">
-      <strong><%= flash[:notice] %></strong>
+  <% if flash[:alert] || flash[:error] %>
+    <div class="callout alert">
       <strong><%= flash[:alert] %></strong>
       <strong><%= flash[:error] %></strong>
+    </div>
+  <% elsif flash[:notice] %>
+    <div class="callout success">
+      <strong><%= flash[:notice] %></strong>
     </div>
   <% end %>
 </div>
