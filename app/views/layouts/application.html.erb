@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Huddl</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -8,23 +13,15 @@
 </head>
 <body>
 
-  <nav>
-    <ul>
-      <% if user_signed_in? %>
-        <li><%= link_to 'Sign Out', '#' %></li>
-      <% else %>
-        <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-      <% end %>
-    </ul>
-  </nav>
-
+ <div class="message">
   <% if flash.any? %>
     <div class="alert callout">
       <strong><%= flash[:notice] %></strong>
       <strong><%= flash[:alert] %></strong>
+      <strong><%= flash[:error] %></strong>
     </div>
   <% end %>
+</div>
 
   <div class="container">
     <div class="row">
@@ -35,4 +32,18 @@
   </div>
 
 </body>
+
+<div class="header">
+  <div class="outer">
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <%= link_to 'Sign Up', new_user_registration_path unless current_user %>
+        <%= link_to "Sign In", new_user_session_path unless current_user %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete if current_user %>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
