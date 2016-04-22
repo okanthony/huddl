@@ -10,7 +10,7 @@ feature "user signs out" do
     click_button "Sign In"
     click_link "Sign Out"
 
-    expect(page).to have_content("See ya!")
+    expect(page).to have_content("See Ya!")
     expect(page).to_not have_content("Sign Out")
   end
 end
