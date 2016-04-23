@@ -40,6 +40,11 @@ class GamesController < PermissionsController
     end
   end
 
+  def show
+    @game = Game.find(params[:id])
+    @roster = Confirmation.where(game: @game)
+  end
+
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
