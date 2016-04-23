@@ -6,4 +6,14 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
   end
+
+  factory :game do
+    street "32 Main Street"
+    city "Boston"
+    state "MA"
+    zip "01223"
+    game_day "2016/04/29"
+    game_time "6:00 PM"
+    opponent "Wildcats"
+  end
 end
