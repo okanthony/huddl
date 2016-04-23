@@ -4,6 +4,8 @@ class CreateConfirmations < ActiveRecord::Migration
       t.belongs_to :user, null: false
       t.belongs_to :game, null: false
       t.boolean :rsvp, default: false
+
+      t.timestamps
     end
   end
 end

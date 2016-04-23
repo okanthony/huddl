@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 20160422153353) do
   enable_extension "plpgsql"
 
   create_table "confirmations", force: :cascade do |t|
-    t.integer "user_id",                 null: false
-    t.integer "game_id",                 null: false
-    t.boolean "rsvp",    default: false
+    t.integer  "user_id",                    null: false
+    t.integer  "game_id",                    null: false
+    t.boolean  "rsvp",       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "games", force: :cascade do |t|

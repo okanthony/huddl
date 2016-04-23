@@ -1,5 +1,5 @@
 class GamesController < PermissionsController
-  before_filter :require_permission, except: [:index]
+  before_filter :require_permission, except: [:index, :show]
 
   def index
     @games = Game.all.order(game_day: :asc)
@@ -37,6 +37,17 @@ class GamesController < PermissionsController
     else
       flash[:alert] = @game.errors.full_messages.join('. ')
       render :edit
+    end
+  end
+
+  def show
+    @game = Game.find(params[:id])
+    @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
+    @current_user_status = Confirmation.where(game: @game, user: current_user)
+    if @current_user_status.empty? || @current_user_status.first.rsvp == false
+      @button_text = "Claim"
+    else
+      @button_text = "Relinquish"
     end
   end
 
