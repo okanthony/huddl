@@ -19,15 +19,14 @@ feature "admin adds a game" do
     fill_in "City", with: "Boston"
     select "Massachusetts", from: "State"
     fill_in "Zip Code", with: 01223
-    fill_in "Date", with: "2016/04/29"
+    fill_in "Date", with: "2016/05/13"
     fill_in "Time", with: "6:00 PM"
-    fill_in "Date", with: "2016/04/29"
     fill_in "Opponent", with: "Wildcats"
     click_button "Save Game"
 
     expect(page).to have_content(game.street)
     expect(page).to have_content(game.game_day.strftime('%b %eth, %Y'))
-    expect(page).to have_content(game.game_time.in_time_zone('EST').strftime('%l:%M %p'))
+    expect(page).to have_content(game.game_time.strftime('%l:%M %p'))
     expect(page).to have_content("vs. #{game.opponent}")
   end
 
@@ -39,7 +38,6 @@ feature "admin adds a game" do
     fill_in "Zip Code", with: 01223
     fill_in "Date", with: "2016/04/29"
     fill_in "Time", with: "6:00 PM"
-    fill_in "Date", with: "2016/04/29"
     click_button "Save Game"
 
     expect(page).to_not have_content("can't be blank")

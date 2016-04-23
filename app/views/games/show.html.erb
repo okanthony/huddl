@@ -7,14 +7,12 @@
 </ul>
 
 <h3>Roster</h3>
-<ul>
-<% if @roster.empty? %>
-  <% 9.times do %>
-    <li>Unclaimed - Button</li>
-  <% end %>
-<% else %>
+<% unless @roster.empty? %>
+  <ul>
   <% @roster.each do |roster| %>
-    <li><%= roster.user %></li>
+    <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
   <% end %>
+  </ul>
 <% end %>
-</ul>
+
+<%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post %>
