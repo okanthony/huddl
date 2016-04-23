@@ -3,6 +3,7 @@ class GamesController < PermissionsController
 
   def index
     @games = Game.all.order(game_day: :asc)
+    @access = current_user.try(:admin?)
   end
 
   def new
@@ -20,6 +21,30 @@ class GamesController < PermissionsController
       flash[:alert] = @game.errors.full_messages.join(". ")
       render :new
     end
+  end
+
+  def edit
+    @game = Game.find(params[:id])
+    @states = Game::STATES
+  end
+
+  def update
+    @game = Game.find(params[:id])
+    @states = Game::STATES
+    if @game.update(game_params)
+      flash[:notice] = "Game Updated"
+      redirect_to games_path
+    else
+      flash[:alert] = @game.errors.full_messages.join('. ')
+      render :edit
+    end
+  end
+
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    flash[:notice] = "Game Deleted"
+    redirect_to games_path
   end
 
   private

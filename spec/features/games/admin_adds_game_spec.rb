@@ -23,7 +23,7 @@ feature "admin adds a game" do
     fill_in "Time", with: "6:00 PM"
     fill_in "Date", with: "2016/04/29"
     fill_in "Opponent", with: "Wildcats"
-    click_button "Add Game"
+    click_button "Save Game"
 
     expect(page).to have_content(game.street)
     expect(page).to have_content(game.game_day.strftime('%b %eth, %Y'))
@@ -40,14 +40,14 @@ feature "admin adds a game" do
     fill_in "Date", with: "2016/04/29"
     fill_in "Time", with: "6:00 PM"
     fill_in "Date", with: "2016/04/29"
-    click_button "Add Game"
+    click_button "Save Game"
 
     expect(page).to_not have_content("can't be blank")
   end
 
   scenario "authenticated admin does not specify required fields" do
     click_link "Add Game"
-    click_button "Add Game"
+    click_button "Save Game"
 
     expect(page).to have_content("can't be blank")
   end
