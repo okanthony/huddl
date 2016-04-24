@@ -2,13 +2,13 @@
 
 <h4>Welcome, <%= @name %></h4>
 
-Next Game:
+<p><i><%= @quote %></i></p>
+
+<p>Next Game:</p>
 <%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.in_time_zone('EST').strftime('%l:%M %p') %>
 vs. <%= @game.opponent %>
-</br>
 
 <% unless @roster.empty? %>
-Current Roster:
   <ul>
   <% @roster.each do |roster| %>
     <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
