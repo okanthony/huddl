@@ -13,6 +13,7 @@
       <% if user_signed_in? %>
         <li><%= link_to 'Schedule', games_path %></li>
         <li><%= link_to 'Add Game', new_game_path if current_user.admin? %></li>
+        <li><%= link_to 'Home', home_path %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Sign In', new_user_session_path %></li>

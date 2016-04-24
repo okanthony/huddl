@@ -12,7 +12,7 @@ feature "admin adds a game" do
     click_button "Sign In"
   end
   scenario "authenticated admin specifies valid game attributes" do
-    expect(page).to have_content("Add Game")
+    expect(page).to have_content("Welcome, #{captain.first_name}")
 
     click_link "Add Game"
     fill_in "Street", with: "32 Main Street"

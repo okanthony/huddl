@@ -1,0 +1,19 @@
+<h1>Huddl</h1>
+
+<h4>Welcome, <%= @name %></h4>
+
+<p><i><%= @quote %></i></p>
+
+<% unless @game.nil? %>
+  <p>Next Game:</p>
+  <%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.strftime('%l:%M %p') %>
+  vs. <%= @game.opponent %>
+<% end %>
+
+<% unless @roster.empty? %>
+  <ul>
+  <% @roster.each do |roster| %>
+    <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+  <% end %>
+  </ul>
+<% end %>
