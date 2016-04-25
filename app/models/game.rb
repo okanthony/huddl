@@ -1,5 +1,7 @@
 class Game < ActiveRecord::Base
   has_many :confirmations
+  geocoded_by :full_address
+  after_validation :geocode
 
   validates :street, presence: true
   validates :city, presence: true
@@ -21,4 +23,8 @@ class Game < ActiveRecord::Base
     ["Tennessee", "TN"], ["Texas", "TX"], ["Utah", "UT"], ["Virginia", "VA"], ["Vermont", "VT"],
     ["Washington", "WA"], ["Wisconsin", "WI"], ["West Virginia", "WV"], ["Wyoming", "WY"]
   ].freeze
+
+  def full_address
+    "#{street}, #{city}, #{state}"
+  end
 end
