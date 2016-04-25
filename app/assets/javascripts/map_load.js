@@ -1,21 +1,3 @@
-// var lat = $('#latitude_field').val();
-// var long = $('#longitude_field').val();
-//
-// function initMap(){
-//   lat = $('#latitude_field').val();
-//   long = $('#longitude_field').val();
-//   function placeMap(lat, long){
-//     var mapProp = {
-//       center: new google.maps.LatLng(lat, long),
-//       zoom: 15,
-//       mapTypeId: google.maps.MapTypeId.ROADMAP
-//     };
-//     map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
-//   }
-// }
-//
-// window.onload = initMap();
-
 var map;
 function initMap() {
   lat = $('#latitude_field').val();
