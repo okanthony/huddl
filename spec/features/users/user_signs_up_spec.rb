@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "user signs up" do
+  let!(:game) { FactoryGirl.create(:game) }
   scenario "specifying valid and required information" do
     visit root_path
     click_link "Sign Up"

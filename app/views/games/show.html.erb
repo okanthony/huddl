@@ -1,3 +1,6 @@
+<%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
+<%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
+
 <h1>Game Name?</h1>
 
 <h3>Game Info</h3>
@@ -5,6 +8,9 @@
   <li><%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.in_time_zone('EST').strftime('%l:%M %p') %></li>
   <li><%= @game.street %> <%= @game.city %>, <%= @game.state %> <%= @game.zip %></li>
 </ul>
+
+<div id="map-canvas">
+</div>
 
 <h3>Roster</h3>
 <% unless @roster.empty? %>
@@ -16,3 +22,6 @@
 <% end %>
 
 <%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post %>
+
+<%= javascript_include_tag "map_load.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>

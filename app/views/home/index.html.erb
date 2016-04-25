@@ -1,3 +1,6 @@
+<%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
+<%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
+
 <h1>Huddl</h1>
 
 <h4>Welcome, <%= @name %></h4>
@@ -17,3 +20,7 @@
   <% end %>
   </ul>
 <% end %>
+
+<div id="map-canvas"></div>
+<%= javascript_include_tag "map_load.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>

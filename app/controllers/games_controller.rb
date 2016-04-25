@@ -68,7 +68,9 @@ class GamesController < PermissionsController
       :zip,
       :game_day,
       :game_time,
-      :opponent
+      :opponent,
+      :latitude,
+      :longitude
     )
   end
 end

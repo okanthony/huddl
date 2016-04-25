@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "admin signs in" do
+  let!(:game) { FactoryGirl.create(:game) }
   scenario "existing user specifies valid email and password" do
     admin1 = FactoryGirl.create(:user, admin: true)
     visit root_path
