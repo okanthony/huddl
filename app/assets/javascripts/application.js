@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+  var errorTimeOut = setTimeout(function(){
+    $('#flash-messages').fadeOut('slow',function(){
+      $(this).remove();
+    });
+  }, 3500);
+});

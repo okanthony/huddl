@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'geocoder'
 gem 'dotenv-rails'
+gem 'twilio-ruby', '~> 4.11.1'
 
 group :development, :test do
   gem 'byebug'

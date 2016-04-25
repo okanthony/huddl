@@ -1,4 +1,3 @@
-var map;
 function initMap() {
   lat = $('#latitude_field').val();
   long = $('#longitude_field').val();
@@ -9,14 +8,19 @@ function initMap() {
   });
 }
 
-// function createMarker(place) {
-//   placeLoc = place.geometry.location;
+// function createMarker(lat, long, map) {
+//   placeLoc = {};
+//   placeLoc.lat = lat;
+//   placeLoc.lng = long;
 //   marker = new google.maps.Marker({
 //     map: map,
 //     animation: google.maps.Animation.DROP,
 //     position: placeLoc
 //   });
 // }
+//
+// createMarker(lat, long, map);
+
 //
 // lat = $('#latitude_field').val();
 // long = $('#longitude_field').val();
