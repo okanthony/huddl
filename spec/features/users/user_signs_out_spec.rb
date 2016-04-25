@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "user signs out" do
+  let!(:game) { FactoryGirl.create(:game) }
   scenario "logged in user successfully signs out" do
     user = FactoryGirl.create(:user)
     visit root_path

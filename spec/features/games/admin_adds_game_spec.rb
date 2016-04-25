@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "admin adds a game" do
   let(:captain) { FactoryGirl.create(:user, admin: true) }
-  let(:game) { FactoryGirl.create(:game) }
+  let!(:game) { FactoryGirl.create(:game) }
 
   before(:each) do
     visit root_path
