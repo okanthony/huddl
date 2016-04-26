@@ -10,4 +10,12 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  config.before(:each) do
+    stub_const("Twilio::REST::Client", FakeSMS)
+  end
+
+  config.before :each, type: :feature do
+    FakeSMS.messages = []
+  end
 end

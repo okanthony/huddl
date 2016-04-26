@@ -28,18 +28,13 @@ class Game < ActiveRecord::Base
     "#{street}, #{city}, #{state}"
   end
 
-  Twilio.configure do |config|
-    config.account_sid = ENV["TWILIO_ACCOUNT_SID"]
-    config.auth_token = ENV["TWILIO_AUTH_TOKEN"]
-  end
-
-  def self.text(action, game, indicator)
+  def text(action, game, indicator)
     if indicator == true
       @closing_remark = ". Log on to Huddl to confirm your roster spot!"
     else
       @closing_remark = "."
     end
-    @client = Twilio::REST::Client.new
+    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
     @client.messages.create(
       from: ENV["TWILIO_PHONE_NUMBER"],
       to: 19788080213,
