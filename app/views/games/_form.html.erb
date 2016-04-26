@@ -21,7 +21,7 @@
 
   <div class= "field">
     <%= f.label :game_day, "Date" %>
-    <%= f.date_field :game_day %>
+    <%= f.date_field :game_day, selected: Date.today, min: Date.today, max: 6.months.from_now %>
   </div>
 
   <div class= "field">

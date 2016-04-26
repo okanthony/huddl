@@ -15,6 +15,7 @@ class GamesController < PermissionsController
     @game = Game.new(game_params)
     @states = Game::STATES
     if @game.save
+      @game.text("created", @game, true)
       flash[:notice] = "Game Added"
       redirect_to games_path
     else
@@ -32,6 +33,7 @@ class GamesController < PermissionsController
     @game = Game.find(params[:id])
     @states = Game::STATES
     if @game.update(game_params)
+      @game.text("edited", @game, true)
       flash[:notice] = "Game Updated"
       redirect_to games_path
     else
@@ -54,6 +56,7 @@ class GamesController < PermissionsController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
+    @game.text("deleted", @game, false)
     flash[:notice] = "Game Deleted"
     redirect_to games_path
   end

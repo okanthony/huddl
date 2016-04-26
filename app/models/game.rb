@@ -27,4 +27,18 @@ class Game < ActiveRecord::Base
   def full_address
     "#{street}, #{city}, #{state}"
   end
+
+  def text(action, game, indicator)
+    if indicator == true
+      @closing_remark = ". Log on to Huddl to confirm your roster spot!"
+    else
+      @closing_remark = "."
+    end
+    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+    @client.messages.create(
+      from: ENV["TWILIO_PHONE_NUMBER"],
+      to: 19788080213,
+      body: "Your captain #{action} a game, #{game.game_day.strftime('%b %eth, %Y')}#{@closing_remark}"
+    )
+  end
 end
