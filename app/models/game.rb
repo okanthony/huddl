@@ -10,6 +10,10 @@ class Game < ActiveRecord::Base
   validates :game_day, presence: true
   validates :game_time, presence: true
 
+  after_create :reminder
+  @@REMINDER_TIME = 180.minutes
+  @@CLIENT = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+
   STATES = [
     ["Alaska", "AK"], ["Alabama", "AL"], ["Arkansas", "AR"], ["Arizona", "AZ"],
     ["California", "CA"], ["Colorado", "CO"], ["Connecticut", "CT"], ["District of Columbia", "DC"],
@@ -34,11 +38,30 @@ class Game < ActiveRecord::Base
     else
       @closing_remark = "."
     end
-    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
-    @client.messages.create(
+    @@CLIENT.messages.create(
       from: ENV["TWILIO_PHONE_NUMBER"],
       to: 19788080213,
       body: "Your captain #{action} a game, #{game.game_day.strftime('%b %eth, %Y')}#{@closing_remark}"
     )
   end
+
+  def reminder
+    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+    time_str = self.game_time.strftime('%l:%M %p')
+    reminder = "Just a reminder, you have a game today at #{time_str}!"
+    @client.messages.create(
+      from: ENV["TWILIO_PHONE_NUMBER"],
+      to: 19788080213,
+      body: reminder
+    )
+  end
+
+  def when_to_run
+    d = game_day
+    t = game_time
+    date_time = DateTime.new(d.year, d.month, d.day, t.hour, t.min, t.sec)
+    date_time - @@REMINDER_TIME 
+  end
+
+  handle_asynchronously :reminder, :run_at => Proc.new { |i| i.when_to_run }
 end

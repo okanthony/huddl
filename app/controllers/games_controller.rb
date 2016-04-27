@@ -60,7 +60,7 @@ class GamesController < PermissionsController
     flash[:notice] = "Game Deleted"
     redirect_to games_path
   end
-
+  
   private
 
   def game_params
