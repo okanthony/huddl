@@ -73,6 +73,9 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise_invitable (1.5.5)
+      actionmailer (>= 3.2.6, < 5)
+      devise (>= 3.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (2.1.0)
@@ -235,6 +238,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coveralls
   devise
+  devise_invitable (~> 1.5.2)
   dotenv-rails
   factory_girl_rails (~> 4.0)
   geocoder
