@@ -1,12 +1,13 @@
 require "rails_helper"
 
 feature "authenticated user receives sms alert" do
-  let!(:captain) { FactoryGirl.create(:user, admin: true) }
-  let!(:player) { FactoryGirl.create(:user) }
+  let!(:team1) { FactoryGirl.create(:team) }
+  let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
+  let!(:player) { FactoryGirl.create(:user, team: team1) }
   let!(:game) { FactoryGirl.create(:game) }
 
   before(:each) do
-    visit root_path
+    visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: captain.email
     fill_in "Password", with: captain.password

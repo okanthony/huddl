@@ -2,6 +2,7 @@ class GamesController < PermissionsController
   before_filter :require_permission, except: [:index, :show]
 
   def index
+    @team = current_user.team
     @games = Game.all.order(game_day: :asc)
     @access = current_user.try(:admin?)
   end
@@ -12,7 +13,9 @@ class GamesController < PermissionsController
   end
 
   def create
+    @team = current_user.team
     @game = Game.new(game_params)
+    @game.team = @team
     @states = Game::STATES
     if @game.save
       @game.text("created", @game, true)

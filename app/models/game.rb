@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   has_many :confirmations
+  belongs_to :team
   geocoded_by :full_address
   after_validation :geocode
 

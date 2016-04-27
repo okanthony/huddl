@@ -3,7 +3,7 @@ class PermissionsController < ApplicationController
     session[:current_page] ||= request.referer
     unless current_user.try(:admin?)
       flash[:alert] = "Sorry, You Do Not Have Permission To Complete This Action"
-      redirect_to root_path
+      redirect_to unauthenticated_root_path
     end
   end
 end

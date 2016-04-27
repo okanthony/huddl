@@ -1,13 +1,12 @@
 require "rails_helper"
 
 feature "user signs out" do
-  let!(:game) { FactoryGirl.create(:game) }
   scenario "logged in user successfully signs out" do
-    user = FactoryGirl.create(:user)
-    visit root_path
+    user1 = FactoryGirl.create(:user)
+    visit unauthenticated_root_path
     click_link "Sign In"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in "Email", with: user1.email
+    fill_in "Password", with: user1.password
     click_button "Sign In"
     click_link "Sign Out"
 
