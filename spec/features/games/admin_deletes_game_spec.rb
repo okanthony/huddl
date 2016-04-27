@@ -1,17 +1,16 @@
 require "rails_helper"
 
 feature "admin deletes a game" do
-  let(:captain) { FactoryGirl.create(:user, admin: true) }
+  let!(:team1) { FactoryGirl.create(:team) }
+  let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
   let!(:game) { FactoryGirl.create(:game) }
-
-  before(:each) do
-    visit root_path
+  
+  scenario "authenticated admin successfully deletes game" do
+    visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: captain.email
     fill_in "Password", with: captain.password
     click_button "Sign In"
-  end
-  scenario "authenticated admin successfully deletes game" do
     click_link "Schedule"
     click_link "Delete"
 

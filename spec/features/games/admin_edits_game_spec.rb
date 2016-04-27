@@ -1,11 +1,13 @@
 require "rails_helper"
 
 feature "admin edits a game" do
-  let(:captain) { FactoryGirl.create(:user, admin: true) }
+  let!(:team1) { FactoryGirl.create(:team) }
+  let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
   let!(:game) { FactoryGirl.create(:game) }
+  let!(:user1) { FactoryGirl.create(:user, team: team1) }
 
   before(:each) do
-    visit root_path
+    visit unauthenticated_root_path
     click_link "Sign In"
     fill_in "Email", with: captain.email
     fill_in "Password", with: captain.password
@@ -35,13 +37,10 @@ feature "admin edits a game" do
 
   scenario "authenticated user visits edit game path" do
     click_link "Sign Out"
-    click_link "Sign Up"
-    fill_in "First Name", with: "John"
-    fill_in "Last Name", with: "Smith"
-    fill_in "Email", with: "user@example.com"
-    fill_in "Password", with: "password"
-    fill_in "Password Confirmation", with: "password"
-    click_button "Sign Up"
+    click_link "Sign In"
+    fill_in "Email", with: user1.email
+    fill_in "Password", with: user1.password
+    click_button "Sign In"
     click_link "Schedule"
 
     expect(page).to_not have_selector(:link, "Edit")

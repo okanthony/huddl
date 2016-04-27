@@ -1,9 +1,8 @@
 require "rails_helper"
 
-feature "user signs up" do
-  let!(:game) { FactoryGirl.create(:game) }
+feature "admin signs up" do
   scenario "specifying valid and required information" do
-    visit root_path
+    visit unauthenticated_root_path
     click_link "Sign Up"
     fill_in "First Name", with: "John"
     fill_in "Last Name", with: "Smith"
@@ -14,10 +13,19 @@ feature "user signs up" do
 
     expect(page).to have_content("Account Created!")
     expect(page).to have_content("Sign Out")
+    expect(page).to have_content("Create Your Team")
+
+    fill_in "Team Name", with: "Badgers"
+    select "Baseball", from: "Sport"
+    click_button "Create Team"
+
+    expect(page).to have_content("Badgers Now Active!")
+    expect(page).to have_content("Welcome, John")
+    expect(page).to have_content("Add Game")
   end
 
   scenario "required information not specified" do
-    visit root_path
+    visit unauthenticated_root_path
     click_link "Sign Up"
     click_button "Sign Up"
 
@@ -26,7 +34,7 @@ feature "user signs up" do
   end
 
   scenario "password confirmation does not match confirmation" do
-    visit root_path
+    visit unauthenticated_root_path
     click_link "Sign Up"
     fill_in "Password", with: "password"
     fill_in "Password Confirmation", with: "wrongpassword"
