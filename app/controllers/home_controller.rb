@@ -14,8 +14,13 @@ class HomeController < ApplicationController
     @game = Game.where("game_day >= ?", Date.today).order("game_day ASC").limit(1).first
     @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
     @quote = QUOTES.sample
-    User.invite!(email: "degennaro.anthony@gmail.com", first_name: "Anthony", last_name: "DeGennaro", team: @team)
-    render :index
+    User.invite!(
+      email: "xyz9@user.com",
+      first_name: "Anthony",
+      last_name: "DeGennaro",
+      team: @team
+    )
+    redirect_to home_path
   end
 
   QUOTES = [

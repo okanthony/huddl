@@ -1,11 +1,13 @@
-<p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
+<p>Hello <%= @resource.first_name %>!</p>
 
-<p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: unauthenticated_root_path) %></p>
-
-<p><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
+<p>The captain of the "<%= @resource.team.name %>" invited you to join their team on Huddl, you can accept it by clicking <%= link_to "here", accept_invitation_url(@resource, :invitation_token => @token) %>.
 
 <% if @resource.invitation_due_at %>
-  <p><%= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
+  Please note this invitation will expire <%= @resource.invitation_due_at.strftime('%b %eth, %Y') %>.</p>
+<% else %>
+  </p>
 <% end %>
 
-<p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+<p>If you don't want to accept the invitation, just ignore this email. Your account won't be created until you access the link above and set your password.</p>
+
+-Huddl
