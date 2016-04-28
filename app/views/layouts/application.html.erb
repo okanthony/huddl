@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Gilda+Display' rel='stylesheet' type='text/css'>
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Huddl" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -13,9 +16,8 @@
 
   <body>
 
-    <div class="top-bar">
+    <div class="top-bar stacked-for-small">
       <ul class="menu">
-        <div class="top-bar left">
         <% if user_signed_in? %>
           <li><%= link_to 'Home', home_path %></li>
           <li><%= link_to 'Schedule', games_path %></li>
@@ -25,15 +27,13 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
         <% end %>
-        </div>
       </ul>
     </div>
 
     <div id="flash-messages">
-      <% if flash.any? %>
-        <div class="alert callout">
-          <strong><%= flash[:notice] %></strong>
-          <strong><%= flash[:alert] %></strong>
+      <% flash.each do |type, msg| %>
+        <div class="flash <%= type %>">
+          <%= msg%>
         </div>
       <% end %>
     </div>
@@ -42,7 +42,7 @@
       <div class="row">
         <div class="column">
           <div class="small-12 columns">
-            <div class="callout">
+
               <%= yield %>
             </div>
           </div>
