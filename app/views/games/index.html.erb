@@ -3,8 +3,8 @@
   <% @games.each do |game| %>
     <a href ="/games/<%= game.id %>">
       <%= game.game_day.strftime('%b %eth, %Y') %>
-      <%= game.game_time.strftime('%l:%M %p') %>
     </a>
+    <%= game.game_time.strftime('%l:%M %p') %>
     <% if !game.opponent.empty? %>
       <%= "vs. #{game.opponent}" %>
     <% end %>

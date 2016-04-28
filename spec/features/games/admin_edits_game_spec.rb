@@ -16,12 +16,10 @@ feature "admin edits a game" do
   scenario "authenticated admin successfully edits game" do
     click_link "Schedule"
     click_link "Edit"
-    fill_in "Street", with: "54 East Avenue"
     fill_in "Opponent", with: "Bearclaws"
     click_button "Save Game"
 
     expect(page).to have_content("Game Updated")
-    expect(page).to have_content("54 East Avenue")
     expect(page).to have_content("Bearclaws")
   end
 
