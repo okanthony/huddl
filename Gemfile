@@ -12,6 +12,7 @@ gem 'devise'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'twilio-ruby', '~> 4.11.1'
+gem 'foundation-rails'
 
 group :development, :test do
   gem 'byebug'
