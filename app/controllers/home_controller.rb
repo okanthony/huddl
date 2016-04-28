@@ -8,6 +8,21 @@ class HomeController < ApplicationController
     @quote = QUOTES.sample
   end
 
+  def invite
+    @name = current_user.first_name
+    @team = current_user.team
+    @game = Game.where("game_day >= ?", Date.today).order("game_day ASC").limit(1).first
+    @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
+    @quote = QUOTES.sample
+    User.invite!(
+      email: "xyz9@user.com",
+      first_name: "Anthony",
+      last_name: "DeGennaro",
+      team: @team
+    )
+    redirect_to home_path
+  end
+
   QUOTES = [
     "'I\'m a ballplayer, not an actor.' - Joe DiMaggio",
     "'Baseball is like poker; nobody wants to quit when they\'re losing, nobody wants you to quit when you\'re ahead.' - Jackie Robinson",

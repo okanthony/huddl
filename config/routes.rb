@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get "/createteam" => "selector#index"
   get "/home" => "home#index"
 
+  resources :home, only: [:invite] do
+    collection do
+      post "invite"
+    end
+  end
+
   resources :selector, only: [:index]
   resources :teams, only: [:create]
 

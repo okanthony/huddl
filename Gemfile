@@ -12,6 +12,7 @@ gem 'devise'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem 'twilio-ruby', '~> 4.11.1'
+gem 'devise_invitable', '~> 1.5.2'
 
 group :development, :test do
   gem 'byebug'
