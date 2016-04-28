@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160427144403) do
     t.string  "street",    null: false
     t.string  "city",      null: false
     t.string  "state",     null: false
-    t.integer "zip",       null: false
+    t.string  "zip",       null: false
     t.date    "game_day",  null: false
     t.time    "game_time", null: false
     t.string  "opponent"

@@ -7,7 +7,7 @@ class Game < ActiveRecord::Base
   validates :street, presence: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :zip, presence: true
+  validates :zip, presence: true, numericality: true
   validates :game_day, presence: true
   validates :game_time, presence: true
 
