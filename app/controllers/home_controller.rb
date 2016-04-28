@@ -9,12 +9,12 @@ class HomeController < ApplicationController
   end
 
   def invite
-    User.invite!(email: "degennaro.anthony@gmail.com", first_name: "Anthony", last_name: "DeGennaro")
     @name = current_user.first_name
     @team = current_user.team
     @game = Game.where("game_day >= ?", Date.today).order("game_day ASC").limit(1).first
     @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
     @quote = QUOTES.sample
+    User.invite!(email: "degennaro.anthony@gmail.com", first_name: "Anthony", last_name: "DeGennaro", team: @team)
     render :index
   end
 
