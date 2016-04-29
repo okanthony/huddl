@@ -78,6 +78,12 @@
   background-color: #63F2D8;
 }
 
+.flash.alert {
+  padding: 1em;
+  color: white;
+  background-color: #F76876;
+}
+
 #game-heading {
   margin-top: 15px;
   margin-left: 2em;
