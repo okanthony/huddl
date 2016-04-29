@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
 
 
@@ -23,11 +25,61 @@
 
 #map-canvas {
   height: 300px;
-  width: 500px;
   border-radius: 16px 16px;
   border-color: #fff;
   border-style: solid;
   box-shadow: 2px 2px 10px #B1B1B1;
   margin-top: 25px;
   border-width: 7px;
+}
+
+#team-name {
+  margin-left: auto;
+  margin-right: auto;
+  width: 4em;
+}
+
+#team-name-schedule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#quote {
+  font-family: 'Gilda Display', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+#welcome {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+}
+
+#next-game {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+}
+
+#roster-button {
+  margin-top: 15px;
+}
+
+#team-name-schedule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flash.notice {
+  padding: 1em;
+  color: white;
+  background-color: #63F2D8;
+}
+
+#game-heading {
+  margin-top: 15px;
+  margin-left: 2em;
+  margin-right: 2em;
 }

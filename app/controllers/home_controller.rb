@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     @name = current_user.first_name
     @team = current_user.team
-    @game = Game.where("game_day >= ?", Date.today).order("game_day ASC").limit(1).first
+    @game = @team.games.where("game_day >= ?", Date.today).order("game_day ASC").limit(1).first
     @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
     @quote = QUOTES.sample
   end

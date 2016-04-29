@@ -3,7 +3,7 @@ require "rails_helper"
 feature "admin edits a game" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
-  let!(:game) { FactoryGirl.create(:game) }
+  let!(:game1) { FactoryGirl.create(:game, team: team1) }
   let!(:user1) { FactoryGirl.create(:user, team: team1) }
 
   before(:each) do
@@ -21,7 +21,6 @@ feature "admin edits a game" do
     click_button "Save Game"
 
     expect(page).to have_content("Game Updated")
-    expect(page).to have_content("54 East Avenue")
     expect(page).to have_content("Bearclaws")
   end
 
@@ -45,14 +44,14 @@ feature "admin edits a game" do
 
     expect(page).to_not have_selector(:link, "Edit")
 
-    visit edit_game_path(game.id)
+    visit edit_game_path(game1.id)
 
     expect(page).to have_content("Sorry, You Do Not Have Permission To Complete This Action")
   end
 
   scenario "unauthenticated user visits edit game path" do
     click_link "Sign Out"
-    visit edit_game_path(game.id)
+    visit edit_game_path(game1.id)
 
     expect(page).to have_content("Sorry, You Do Not Have Permission To Complete This Action")
   end

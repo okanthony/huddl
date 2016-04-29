@@ -1,30 +1,32 @@
-<h1><%= @team.name %></h1>
+<h1 id="team-name"><%= @team.name %></h1>
 
-<h4>Welcome, <%= @name %></h4>
+<div id="welcome"><p>Welcome, <%= @name %></p></div>
 
-<p><i><%= @quote %></i></p>
+<p id="quote"><%= @quote %></p>
 
 <% unless @game.nil? %>
-  <p>Next Game:</p>
+  <div id="next-game">Next Game:</div>
   <%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.strftime('%l:%M %p') %>
   vs. <%= @game.opponent %>
-<% end %>
-
-<%= link_to "Invite Anthony", invite_home_index_path, method: :post %>
-
-
-<% unless @roster.empty? %>
-  <ul>
-  <% @roster.each do |roster| %>
-    <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
-  <% end %>
-  </ul>
 <% end %>
 
 <% unless @game.nil? %>
   <%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
   <%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
   <div id="map-canvas"></div>
+<% end %>
+
+<% unless @roster.empty? %>
+  <ul class="vertical menu" data-accordion-menu>
+    <li>
+      <a href="#"><h3>Roster</h3></a>
+      <ul class="menu vertical nested">
+        <% @roster.each do |roster| %>
+          <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
 <% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>
