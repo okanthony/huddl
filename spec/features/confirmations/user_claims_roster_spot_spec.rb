@@ -14,7 +14,7 @@ feature "authenticated user claims roster spot" do
   end
   scenario "successfully claims roster spot" do
     click_link "Schedule"
-    click_link game1.street
+    click_link game1.game_day.strftime('%b %eth, %Y')
     click_button "Claim"
 
     expect(page).to have_content("#{user1.first_name} #{user1.last_name}")
@@ -24,7 +24,7 @@ feature "authenticated user claims roster spot" do
 
   scenario "successfully cancels roster spot" do
     click_link "Schedule"
-    click_link game1.street
+    click_link game1.game_day.strftime('%b %eth, %Y')
     click_button "Claim"
     click_button "Relinquish"
 

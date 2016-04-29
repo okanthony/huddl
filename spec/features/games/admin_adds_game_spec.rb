@@ -26,7 +26,6 @@ feature "admin adds a game" do
     fill_in "Opponent", with: "Wildcats"
     click_button "Save Game"
 
-    expect(page).to have_content(game.street)
     expect(page).to have_content(game.game_day.strftime('%b %eth, %Y'))
     expect(page).to have_content(game.game_time.strftime('%l:%M %p'))
     expect(page).to have_content("vs. #{game.opponent}")

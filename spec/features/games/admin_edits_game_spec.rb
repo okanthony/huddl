@@ -21,7 +21,6 @@ feature "admin edits a game" do
     click_button "Save Game"
 
     expect(page).to have_content("Game Updated")
-    expect(page).to have_content("54 East Avenue")
     expect(page).to have_content("Bearclaws")
   end
 
