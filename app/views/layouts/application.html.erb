@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Huddl</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Gilda+Display' rel='stylesheet' type='text/css'>
 
-  <nav>
-    <ul>
-      <% if user_signed_in? %>
-        <li><%= link_to 'Schedule', games_path %></li>
-        <li><%= link_to 'Add Game', new_game_path if current_user.admin? %></li>
-        <li><%= link_to 'Home', home_path %></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+    <title><%= content_for?(:title) ? yield(:title) : "Huddl" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <div class="top-bar">
+      <ul class="menu">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Home', home_path %></li>
+          <li><%= link_to 'Schedule', games_path %></li>
+          <li><%= link_to 'Add Game', new_game_path if current_user.admin? %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="flash-messages">
+      <% flash.each do |type, msg| %>
+        <div class="flash <%= type %>">
+          <%= msg%>
+        </div>
       <% end %>
-    </ul>
-  </nav>
-  <div id="flash-messages">
-    <% if flash.any? %>
-      <div class="alert callout">
-        <strong><%= flash[:notice] %></strong>
-        <strong><%= flash[:alert] %></strong>
-      </div>
-    <% end %>
-  </div>
+    </div>
 
-        <%= yield %>
-  <%= javascript_include_tag 'application' %>
-</body>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <div class="small-12 columns">
+
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag 'application' %>
+  </body>
 </html>

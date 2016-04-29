@@ -1,9 +1,9 @@
-<h1><%= @team.name %> Schedule</h1>
+<h1 id="team-name">Schedule</h1>
 
-<ul>
   <% @games.each do |game| %>
-  <li><a href ="/games/<%= game.id %>"><%= game.street %></a>:
-    <%= game.game_day.strftime('%b %eth, %Y') %>
+    <a href ="/games/<%= game.id %>">
+      <%= game.game_day.strftime('%b %eth, %Y') %>
+    </a>
     <%= game.game_time.strftime('%l:%M %p') %>
     <% if !game.opponent.empty? %>
       <%= "vs. #{game.opponent}" %>
@@ -11,6 +11,4 @@
     <% if @access %>
       <%= link_to "Edit", edit_game_path(game) %> <%= link_to "Delete", game_path(game), method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
-  </li>
   <% end %>
-</ul>
