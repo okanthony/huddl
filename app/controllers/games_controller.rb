@@ -3,7 +3,7 @@ class GamesController < PermissionsController
 
   def index
     @team = current_user.team
-    @games = @team.games.all.order(game_day: :asc)
+    @games = @team.games.order(game_day: :asc)
     @access = current_user.try(:admin?)
   end
 

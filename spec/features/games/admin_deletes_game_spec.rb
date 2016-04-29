@@ -3,8 +3,8 @@ require "rails_helper"
 feature "admin deletes a game" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
-  let!(:game) { FactoryGirl.create(:game) }
-  
+  let!(:game1) { FactoryGirl.create(:game, team: team1) }
+
   scenario "authenticated admin successfully deletes game" do
     visit unauthenticated_root_path
     click_link "Sign In"
@@ -15,7 +15,6 @@ feature "admin deletes a game" do
     click_link "Delete"
 
     expect(page).to have_content("Game Deleted")
-    expect(page).to_not have_content(game.street)
-    expect(page).to_not have_content(game.game_day)
+    expect(page).to_not have_content(game1.game_day)
   end
 end

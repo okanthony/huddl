@@ -4,7 +4,7 @@ feature "authenticated user receives sms alert" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
   let!(:player) { FactoryGirl.create(:user, team: team1) }
-  let!(:game) { FactoryGirl.create(:game) }
+  let!(:game1) { FactoryGirl.create(:game, team: team1) }
 
   before(:each) do
     visit unauthenticated_root_path
@@ -25,7 +25,7 @@ feature "authenticated user receives sms alert" do
     click_button "Save Game"
 
     last_message = FakeSMS.messages.last
-    expect(last_message.body).to have_content(game.game_day.strftime('%b %eth, %Y'))
+    expect(last_message.body).to have_content(game1.game_day.strftime('%b %eth, %Y'))
     expect(last_message.body).to have_content("created")
   end
 
@@ -45,7 +45,7 @@ feature "authenticated user receives sms alert" do
     click_link "Delete"
 
     last_message = FakeSMS.messages.last
-    expect(last_message.body).to have_content(game.game_day.strftime('%b %eth, %Y'))
+    expect(last_message.body).to have_content(game1.game_day.strftime('%b %eth, %Y'))
     expect(last_message.body).to have_content("deleted")
   end
 end

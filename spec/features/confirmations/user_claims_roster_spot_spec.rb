@@ -3,7 +3,7 @@ require "rails_helper"
 feature "authenticated user claims roster spot" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:user1) { FactoryGirl.create(:user, team: team1) }
-  let!(:game1) { FactoryGirl.create(:game) }
+  let!(:game1) { FactoryGirl.create(:game, team: team1) }
 
   before(:each) do
     visit unauthenticated_root_path
