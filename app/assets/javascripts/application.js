@@ -15,6 +15,8 @@
 //= require foundation
 //= require_tree .
 
+$(document).foundation();
+
 $(document).ready(function(){
   var errorTimeOut = setTimeout(function(){
     $('#flash-messages').fadeOut('slow',function(){
@@ -22,5 +24,3 @@ $(document).ready(function(){
     });
   }, 3500);
 });
-
-$(function(){ $(document).foundation(); });
