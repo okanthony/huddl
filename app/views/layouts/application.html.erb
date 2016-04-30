@@ -21,18 +21,18 @@
         <section class="top-bar-section">
 
           <ul class="left">
-            <li><%= link_to 'Home', home_path %></li>
+            <li><%= link_to "Home", home_path %></li>
           </ul>
 
           <ul class="right">
             <% if user_signed_in? %>
-              <li><%= link_to 'Schedule', games_path %></li>
-              <li><%= link_to 'Add Game', new_game_path if current_user.admin? %></li>
-              <li><%= link_to 'Profile', edit_user_registration_path %></li>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "Schedule", games_path %></li>
+              <li><%= link_to "Add Game", new_game_path if current_user.admin? %></li>
+              <li><%= link_to "Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
           </ul>
         </section>
@@ -45,8 +45,6 @@
         <% end %>
       </div>
     </div>
-
-
 
     <div class="container">
       <div class="row">

@@ -1,0 +1,28 @@
+<h1>All Users</h1>
+
+<% unless @users.empty?%>
+  <% @users.each do |user| %>
+    <%= user.first_name %><br/>
+  <% end %>
+<% end %>
+
+<%= form_for @invitee, url: invite_users_path do |f| %>
+  <div class= "field">
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Invite User" %>
+  </div>
+<% end %>

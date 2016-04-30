@@ -3,7 +3,7 @@ require "rails_helper"
 feature "authenticated user receives sms alert" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
-  let!(:player) { FactoryGirl.create(:user, team: team1) }
+  let!(:player) { FactoryGirl.create(:user, team: team1, phone: "5555551212") }
   let!(:game1) { FactoryGirl.create(:game, team: team1) }
 
   before(:each) do
