@@ -21,18 +21,31 @@
         <section class="top-bar-section">
 
           <ul class="left">
-            <li><%= link_to 'Home', home_path %></li>
+            <li><%= link_to "Home", home_path %></li>
           </ul>
 
           <ul class="right">
             <% if user_signed_in? %>
-              <li><%= link_to 'Schedule', games_path %></li>
-              <li><%= link_to 'Add Game', new_game_path if current_user.admin? %></li>
-              <li><%= link_to 'Profile', edit_user_registration_path %></li>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "Schedule", games_path %></li>
+              <% if current_user.admin? %>
+                <li class="has-dropdown">
+                  <a href="#">Captain</a>
+                  <ul class="dropdown">
+                    <li><%= link_to "Invite", users_path if current_user.admin? %></li>
+                    <li><%= link_to "Add Game", new_game_path if current_user.admin? %></li>
+                  </ul>
+                </li>
+              <% end %>
+              <li class="has-dropdown">
+                <a href="#">Profile</a>
+                <ul class="dropdown">
+                  <li><%= link_to "Edit", edit_user_registration_path %></li>
+                  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
             <% else %>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
           </ul>
         </section>
@@ -45,8 +58,6 @@
         <% end %>
       </div>
     </div>
-
-
 
     <div class="container">
       <div class="row">

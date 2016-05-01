@@ -1,14 +1,20 @@
 <h1 id="team-name">Schedule</h1>
 
+<% if @games.empty? %>
+  <%= "Schedule Currently Empty" %>
+<% else %>
   <% @games.each do |game| %>
     <a href ="/games/<%= game.id %>">
-      <%= game.game_day.strftime('%b %eth, %Y') %>
+      <%= game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y") %>
     </a>
     <%= game.game_time.strftime('%l:%M %p') %>
     <% if !game.opponent.empty? %>
       <%= "vs. #{game.opponent}" %>
     <% end %>
     <% if @access %>
-      <%= link_to "Edit", edit_game_path(game) %> <%= link_to "Delete", game_path(game), method: :delete, data: { confirm: "Are you sure?" } %>
+      <div class="admin-buttons">
+        <%= link_to "Edit", edit_game_path(game) %> <%= link_to "Delete", game_path(game), method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
     <% end %>
   <% end %>
+<% end %>

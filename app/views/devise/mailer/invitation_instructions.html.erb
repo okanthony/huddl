@@ -1,6 +1,6 @@
 <p>Hello <%= @resource.first_name %>!</p>
 
-<p>The captain of the "<%= @resource.team.name %>" has invited you to join their team on Huddl, you can accept it by clicking <%= link_to "here", accept_invitation_url(@resource, :invitation_token => @token) %>.
+<p>The captain of the "<%= @resource.team.name %>" has invited you to join their <%= @resource.team.sport.downcase %> team on Huddl, you can accept it by clicking <%= link_to "here", accept_invitation_url(@resource, :invitation_token => @token) %>.
 
 <% if @resource.invitation_due_at %>
   Please note this invitation will expire <%= @resource.invitation_due_at.strftime('%b %eth, %Y') %>.</p>

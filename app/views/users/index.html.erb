@@ -1,0 +1,38 @@
+<h3>Confirmed Players</h3>
+
+<% unless @confirmed_users.empty? %>
+  <% @confirmed_users.each do |user| %>
+    <%= user.first_name %> <%= user.last_name %><br/>
+  <% end %>
+<% end %>
+
+<h3>Pending Players</h3>
+
+<% unless @pending_users.empty? %>
+  <% @pending_users.each do |user| %>
+    <%= user.first_name %> <%= user.last_name %><br/>
+  <% end %>
+<% end %>
+
+<h3>Invite New Player</h3>
+
+<%= form_for @invitee, url: invite_users_path do |f| %>
+  <div class= "field">
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class= "field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class= "actions">
+    <%= f.submit "Invite User" %>
+  </div>
+<% end %>

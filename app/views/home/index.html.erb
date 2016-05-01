@@ -1,4 +1,4 @@
-<h1 id="team-name"><%= @team.name %></h1>
+<h2 id="team-name"><%= @team.name %></h2>
 
 <div id="welcome"><p>Welcome, <%= @name %></p></div>
 
@@ -6,7 +6,7 @@
 
 <% unless @game.nil? %>
   <div id="next-game">Next Game:</div>
-  <%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.strftime('%l:%M %p') %>
+  <%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %> <%= @game.game_time.strftime('%l:%M %p') %>
   vs. <%= @game.opponent %>
 <% end %>
 

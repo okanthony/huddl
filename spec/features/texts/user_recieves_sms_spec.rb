@@ -3,7 +3,7 @@ require "rails_helper"
 feature "authenticated user receives sms alert" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
-  let!(:player) { FactoryGirl.create(:user, team: team1) }
+  let!(:player) { FactoryGirl.create(:user, team: team1, phone: "5554441212") }
   let!(:game1) { FactoryGirl.create(:game, team: team1) }
 
   before(:each) do
@@ -31,7 +31,9 @@ feature "authenticated user receives sms alert" do
 
   scenario "on game edit" do
     click_link "Schedule"
-    click_link "Edit"
+    within(:css, ".admin-buttons") do
+      click_link "Edit"
+    end
     fill_in "Date", with: "2016/06/13"
     click_button "Save Game"
 

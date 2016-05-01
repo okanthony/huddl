@@ -15,7 +15,9 @@ feature "admin edits a game" do
   end
   scenario "authenticated admin successfully edits game" do
     click_link "Schedule"
-    click_link "Edit"
+    within(:css, ".admin-buttons") do
+      click_link "Edit"
+    end
     fill_in "Street", with: "54 East Avenue"
     fill_in "Opponent", with: "Bearclaws"
     click_button "Save Game"
@@ -26,7 +28,9 @@ feature "admin edits a game" do
 
   scenario "authenticated admin does not specify required fields" do
     click_link "Schedule"
-    click_link "Edit"
+    within(:css, ".admin-buttons") do
+      click_link "Edit"
+    end
     fill_in "Street", with: ""
     click_button "Save Game"
 
@@ -42,7 +46,7 @@ feature "admin edits a game" do
     click_button "Sign In"
     click_link "Schedule"
 
-    expect(page).to_not have_selector(:link, "Edit")
+    expect(page).to_not have_css(".admin-buttons")
 
     visit edit_game_path(game1.id)
 
