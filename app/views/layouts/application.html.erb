@@ -26,7 +26,6 @@
 
           <ul class="right">
             <% if user_signed_in? %>
-              <li><%= link_to "Schedule", games_path %></li>
               <% if current_user.admin? %>
                 <li class="has-dropdown">
                   <a href="#">Captain</a>
@@ -36,6 +35,7 @@
                   </ul>
                 </li>
               <% end %>
+              <li><%= link_to "Schedule", games_path %></li>
               <li class="has-dropdown">
                 <a href="#">Profile</a>
                 <ul class="dropdown">
@@ -53,7 +53,7 @@
       <div id="flash-messages">
         <% flash.each do |type, msg| %>
           <div class="flash <%= type %>">
-            <%= msg%>
+            <%= msg %>
           </div>
         <% end %>
       </div>
