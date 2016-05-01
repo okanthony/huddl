@@ -1,6 +1,8 @@
 require "rails_helper"
 
 feature "admin signs up" do
+  let!(:team1) { FactoryGirl.create(:team) }
+  let!(:captain1) { FactoryGirl.create(:user, admin: true, team: team1) }
   scenario "specifying valid and required information" do
     visit unauthenticated_root_path
     click_link "Sign Up"

@@ -17,8 +17,11 @@ class GamesController < PermissionsController
     @game = Game.new(game_params)
     @game.team = @team
     @states = Game::STATES
-    if @game.save
+    if @game.save && !@game.team_phone.empty?
       @game.text("created", @game, true)
+      flash[:notice] = "Game Added"
+      redirect_to games_path
+    elsif @game.save && @game.team_phone.empty?
       flash[:notice] = "Game Added"
       redirect_to games_path
     else
@@ -35,8 +38,11 @@ class GamesController < PermissionsController
   def update
     @game = Game.find(params[:id])
     @states = Game::STATES
-    if @game.update(game_params)
+    if @game.update(game_params) && !@game.team_phone.empty?
       @game.text("edited", @game, true)
+      flash[:notice] = "Game Updated"
+      redirect_to games_path
+    elsif @game.update(game_params) && @game.team_phone.empty?
       flash[:notice] = "Game Updated"
       redirect_to games_path
     else
@@ -58,10 +64,16 @@ class GamesController < PermissionsController
 
   def destroy
     @game = Game.find(params[:id])
-    @game.destroy
-    @game.text("deleted", @game, false)
-    flash[:notice] = "Game Deleted"
-    redirect_to games_path
+    if !@game.team_phone.empty?
+      @game.destroy
+      @game.text("deleted", @game, false)
+      flash[:notice] = "Game Deleted"
+      redirect_to games_path
+    elsif @game.team_phone.empty?
+      @game.destroy
+      flash[:notice] = "Game Deleted"
+      redirect_to games_path
+    end
   end
 
   private

@@ -6,7 +6,7 @@
 
 <% unless @game.nil? %>
   <div id="next-game">Next Game:</div>
-  <%= @game.game_day.strftime('%b %eth, %Y') %> <%= @game.game_time.strftime('%l:%M %p') %>
+  <%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %> <%= @game.game_time.strftime('%l:%M %p') %>
   vs. <%= @game.opponent %>
 <% end %>
 
@@ -15,8 +15,6 @@
   <%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
   <div id="map-canvas"></div>
 <% end %>
-
-<%= link_to "Invite Players", users_path %>
 
 <% unless @roster.empty? %>
   <ul class="vertical menu" data-accordion-menu>

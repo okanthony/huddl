@@ -2,13 +2,13 @@ class UsersController < PermissionsController
   before_filter :require_permission
 
   def index
-    @users = User.where(team: current_user.team)
+    @confirmed_users = User.where(team: current_user.team, admin: false).where("sign_in_count > '0'")
+    @pending_users = User.where(team: current_user.team).where("sign_in_count = '0'")
     @invitee = User.new
   end
 
   def invite
-    # @invitee = User.new(user_params)
-    # if @invitee.errors.nil?
+    # if
     #   @invitee = User.invite!(user_params)
     #   flash[:notice] = "Player Invited"
     #   redirect_to users_path
@@ -17,6 +17,7 @@ class UsersController < PermissionsController
     #   render :index
     # end
     @invitee = User.invite!(user_params)
+    flash[:notice] = "Player Invited"
     redirect_to users_path
   end
 
