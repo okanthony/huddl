@@ -45,11 +45,11 @@ class Game < ActiveRecord::Base
     else
       @closing_remark = "."
     end
-      @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
-      @client.messages.create(
-        from: ENV["TWILIO_PHONE_NUMBER"],
-        to: game.team_phone,
-        body: "Your captain #{action} a game, #{game.game_day.strftime('%b %eth, %Y')}#{@closing_remark}"
-      )
+    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+    @client.messages.create(
+      from: ENV["TWILIO_PHONE_NUMBER"],
+      to: game.team_phone,
+      body: "Your captain #{action} a game, #{game.game_day.strftime('%b %eth, %Y')}#{@closing_remark}"
+    )
   end
 end
