@@ -16,10 +16,15 @@ class ConfirmationsController < ApplicationController
       @button_text = "Relinquish"
     end
     respond_to do |format|
+      # if @status.rsvp == true
+      #   response = { name: @roster.last.user, button_name: @button_text }
+      # else
+      #   response = { button_name: @button_text }
+      # end
       if @status.rsvp == true
         response = { name: @roster.last.user, button_name: @button_text }
       else
-        response = { button_name: @button_text }
+        response = { name: @status.user, button_name: @button_text }
       end
       format.json { render json: response }
       format.html { redirect_to game_path(@game) }

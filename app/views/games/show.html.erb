@@ -13,7 +13,7 @@
     <h3>Roster</h3>
     <ul id="roster-list">
       <% @roster.each do |roster| %>
-        <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+        <li id="<%= roster.user.first_name %> <%= roster.user.last_name %>"><%= roster.user.first_name %> <%= roster.user.last_name %></li>
       <% end %>
     </ul>
 </div>

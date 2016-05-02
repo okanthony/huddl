@@ -3,15 +3,16 @@ $("#roster-button").on("submit", function(event) {
 
 var url = $(this).attr("href");
 var roster = $(this).parent().find("#roster-list");
-
   if ($("#actual-button")[0].value === "Claim") {
     var request = $.ajax({
       type: "POST",
       url: url,
       dataType: "json",
       success: function(response) {
+        var full_name = response.name.first_name + ' ' + response.name.last_name;
         var player = document.createElement("li");
-        player.appendChild(document.createTextNode(response.name.first_name + ' ' + response.name.last_name));
+        player.setAttribute("id", full_name);
+        player.appendChild(document.createTextNode(full_name));
         roster[0].appendChild(player);
         document.getElementById("actual-button").value = response.button_name;
       }
@@ -22,7 +23,7 @@ var roster = $(this).parent().find("#roster-list");
       url: url,
       dataType: "json",
       success: function(response) {
-        $('#roster-list li:last-child')[0].remove();
+        document.getElementById(full_name).remove();
         document.getElementById("actual-button").value = response.button_name;
       }
     });
