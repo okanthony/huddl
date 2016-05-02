@@ -23,7 +23,7 @@ var roster = $(this).parent().find("#roster-list");
       url: url,
       dataType: "json",
       success: function(response) {
-        document.getElementById(full_name).remove();
+        document.getElementById(response.name.first_name + ' ' + response.name.last_name).remove();
         document.getElementById("actual-button").value = response.button_name;
       }
     });
