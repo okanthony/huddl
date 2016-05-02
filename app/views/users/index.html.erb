@@ -1,6 +1,6 @@
 <h3>Confirmed Players</h3>
 
-<% unless @confirmed_users.empty? %>
+<% unless @confirmed_users.nil? %>
   <% @confirmed_users.each do |user| %>
     <%= user.first_name %> <%= user.last_name %><br/>
   <% end %>
@@ -8,7 +8,7 @@
 
 <h3>Pending Players</h3>
 
-<% unless @pending_users.empty? %>
+<% unless @pending_users.nil? %>
   <% @pending_users.each do |user| %>
     <%= user.first_name %> <%= user.last_name %><br/>
   <% end %>
