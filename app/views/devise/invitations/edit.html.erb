@@ -1,4 +1,5 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
+<div class="large-6 small-12 large-centered columns text-center">
+<h2>Set Your Password</h2>
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
@@ -12,3 +13,4 @@
 
   <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
 <% end %>
+</div>
