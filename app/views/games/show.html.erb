@@ -8,19 +8,14 @@
 <div id="map-canvas">
 </div>
 
-<div id="roster-button"><%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post, class: "button" %></div>
-
-<% unless @roster.empty? %>
-  <ul class="vertical menu" data-accordion-menu>
-    <li>
-      <a href="#"><h3>Roster</h3></a>
-      <ul class="menu vertical nested">
-        <% @roster.each do |roster| %>
-          <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
-        <% end %>
-      </ul>
-    </li>
-  </ul>
-<% end %>
+<div id="roster-block">
+  <div id="roster-button" href="<%=claim_game_confirmations_path(@game)%>"><%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post, id: "actual-button", class: "button" %></div>
+    <h3>Roster</h3>
+    <ul id="roster-list">
+      <% @roster.each do |roster| %>
+        <li id="<%= roster.user.first_name %> <%= roster.user.last_name %>"><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+      <% end %>
+    </ul>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>
