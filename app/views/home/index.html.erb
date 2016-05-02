@@ -17,15 +17,11 @@
 <% end %>
 
 <% unless @roster.empty? %>
-  <ul class="vertical menu" data-accordion-menu>
-    <li>
-      <a href="#"><h3>Roster</h3></a>
-      <ul class="menu vertical nested">
-        <% @roster.each do |roster| %>
-          <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
-        <% end %>
-      </ul>
-    </li>
+  <h3>Roster</h3></a>
+  <ul id="home-roster">
+    <% @roster.each do |roster| %>
+      <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+    <% end %>
   </ul>
 <% end %>
 

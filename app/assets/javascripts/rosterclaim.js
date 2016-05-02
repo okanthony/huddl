@@ -4,6 +4,7 @@ $("#roster-button").on("submit", function(event) {
 var url = $(this).attr("href");
 var roster = $(this).parent().find("#roster-list");
 
+if ($("#actual-button")[0].value === "Claim") {
   var request = $.ajax({
     type: "POST",
     url: url,
@@ -15,4 +16,16 @@ var roster = $(this).parent().find("#roster-list");
       document.getElementById("actual-button").value = response.button_name;
     }
   });
+} else {
+  var request = $.ajax({
+    type: "POST",
+    url: url,
+    dataType: "json",
+    success: function(response) {
+      $('#roster-list li:last-child')[0].remove();
+      document.getElementById("actual-button").value = response.button_name;
+    }
+  });
+}
+
 });
