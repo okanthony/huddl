@@ -1,20 +1,28 @@
-<h1 id="team-name">Schedule</h1>
-
-<% if @games.empty? %>
-  <%= "Schedule Currently Empty" %>
-<% else %>
-  <% @games.each do |game| %>
-    <a href ="/games/<%= game.id %>">
-      <%= game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y") %>
-    </a>
-    <%= game.game_time.strftime('%l:%M %p') %>
-    <% if !game.opponent.empty? %>
-      <%= "vs. #{game.opponent}" %>
+<div class="large-6 small-12 large-centered text-center columns">
+  <% if @games.empty? %>
+    <h2>Schedule</h2>
+    <%= "No Upcoming Games" %>
+  <% else %>
+    <ul>
+      <li class="roster-index"><h2>Schedule</h2></li>
+        <% @games.each do |game| %>
+          <li class="roster-index">
+            <a href ="/games/<%= game.id %>">
+              <%= game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y") %>
+            </a>
+            <%= game.game_time.strftime('%l:%M %p') %>
+            <% if !game.opponent.empty? %>
+              <%= "vs. #{game.opponent}" %>
+            <% end %>
+      </li>
+      <li class="roster-index">
+        <% if @access %>
+          <div class="admin-buttons">
+            <%= link_to "Edit", edit_game_path(game) %> <%= link_to "Delete", game_path(game), method: :delete, data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-    <% if @access %>
-      <div class="admin-buttons">
-        <%= link_to "Edit", edit_game_path(game) %> <%= link_to "Delete", game_path(game), method: :delete, data: { confirm: "Are you sure?" } %>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
+    </li>
+  </ul>
+</div>

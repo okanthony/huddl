@@ -1,7 +1,10 @@
 <%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
 <%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
 
-<h3 id="game-heading"><%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %> - <%= @game.game_time.in_time_zone('EST').strftime('%l:%M %p') %></h3>
+<div class="large-10 small-12 large-centered columns text-center">
+
+<h3 id="game-heading"><%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %></h3>
+<h4><%= @game.game_time.in_time_zone('EST').strftime('%l:%M %p') %></h4>
 <%= @game.street %> <%= @game.city %>, <%= @game.state %> <%= @game.zip %>
 
 
@@ -9,8 +12,8 @@
 </div>
 
 <div id="roster-block">
-  <div id="roster-button" href="<%=claim_game_confirmations_path(@game)%>"><%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post, id: "actual-button", class: "button" %></div>
-    <h3>Roster</h3>
+  <div id="roster-button" href="<%=claim_game_confirmations_path(@game)%>"><%= button_to "#{@button_text}", claim_game_confirmations_path(@game), method: :post, id: "actual-button", class: "button expand round" %></div>
+    <h4>Roster</h4>
     <ul id="roster-list">
       <% @roster.each do |roster| %>
         <li id="<%= roster.user.first_name %> <%= roster.user.last_name %>"><%= roster.user.first_name %> <%= roster.user.last_name %></li>
@@ -19,3 +22,4 @@
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>
+</div>
