@@ -89,3 +89,7 @@
   margin-left: 2em;
   margin-right: 2em;
 }
+
+#roster-list {
+  list-style-type:none;
+}
