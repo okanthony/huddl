@@ -1,28 +1,30 @@
-<h2 id="team-name"><%= @team.name %></h2>
+<div class="large-10 small-12 large-centered columns text-center">
+  <h2 id="team-name"><%= @team.name %></h2>
 
-<div id="welcome"><p>Welcome, <%= @name %></p></div>
+  <p id="quote"><%= @quote %></p>
 
-<p id="quote"><%= @quote %></p>
+  <% unless @game.nil? %>
+    <div id="next-game"><h4>Next Game:</h4></div>
+    <div id="next-game"><%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %> <%= @game.game_time.strftime('%l:%M %p') %>
+    vs. <%= @game.opponent %></div>
+  <% end %>
 
-<% unless @game.nil? %>
-  <div id="next-game">Next Game:</div>
-  <%= @game.game_day.strftime("%b #{@game.game_day.day.ordinalize}, %Y") %> <%= @game.game_time.strftime('%l:%M %p') %>
-  vs. <%= @game.opponent %>
-<% end %>
+  <% unless @game.nil? %>
+    <%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
+    <%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
+    <div id="map-canvas"></div>
+  <% end %>
 
-<% unless @game.nil? %>
-  <%= hidden_field( :latitude, :field, :value => @game.latitude ) %>
-  <%= hidden_field( :longitude, :field, :value => @game.longitude ) %>
-  <div id="map-canvas"></div>
-<% end %>
+  <% if !@roster.empty? %>
+    <h4>Roster</h4></a>
+    <ul id="roster-list">
+      <% @roster.each do |roster| %>
+        <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= "No Upcoming Games" %>
+  <% end %>
 
-<% unless @roster.empty? %>
-  <h3>Roster</h3></a>
-  <ul id="home-roster">
-    <% @roster.each do |roster| %>
-      <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABOogVR1b5VlEmR_2zoYoJH4siK2zS_0c&callback=initMap" async defer></script>
+</div>

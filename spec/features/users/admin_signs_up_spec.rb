@@ -20,7 +20,6 @@ feature "admin signs up" do
     click_button "Create Team"
 
     expect(page).to have_content("Badgers Now Active!")
-    expect(page).to have_content("Welcome, John")
     expect(page).to have_content("Add Game")
   end
 

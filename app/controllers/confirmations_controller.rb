@@ -7,7 +7,6 @@ class ConfirmationsController < ApplicationController
       @status.rsvp = false
     end
     @status.save
-    # redirect_to game_path(@game)
     @roster = Confirmation.where(game: @game, rsvp: true).order(updated_at: :asc)
     @current_user_status = Confirmation.where(game: @game, user: current_user)
     if @current_user_status.empty? || @current_user_status.first.rsvp == false

@@ -12,7 +12,6 @@ feature "user signs in" do
 
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")
-    expect(page).to have_content("Welcome, #{user1.first_name}")
     expect(page).to have_content("#{team1.name}")
     expect(page).to_not have_content("Add Game")
   end
@@ -27,7 +26,6 @@ feature "user signs in" do
 
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")
-    expect(page).to have_content("Welcome, #{admin1.first_name}")
     expect(page).to have_content("#{team1.name}")
     expect(page).to have_content("Add Game")
   end

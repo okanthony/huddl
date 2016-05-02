@@ -37,11 +37,27 @@
   margin-left: auto;
   margin-right: auto;
   width: 4em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
 }
 
-#team-name-schedule {
+#edit-game {
   margin-left: auto;
   margin-right: auto;
+  width: 5em;
+}
+
+#create-team {
+  margin-left: auto;
+  margin-right: auto;
+  width: 8em;
+}
+
+
+#game-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25em;
 }
 
 #quote {
@@ -67,11 +83,6 @@
   margin-top: 15px;
 }
 
-#team-name-schedule {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .flash.notice {
   padding: 1em;
   color: white;
@@ -90,10 +101,47 @@
   margin-right: 2em;
 }
 
-#roster-list {
-  list-style-type:none;
-}
-
 #home-roster {
   list-style-type:none;
+  text-align: center;
+}
+
+.button {
+background-color: #7A7B85;
+border-color: #7A7B85;
+}
+
+.button:hover {
+background-color: #333333;
+border-color: #7A7B85;
+}
+
+.button:visited {
+background-color: #7A7B85;
+border-color: #7A7B85;
+}
+
+.button:visited:hover {
+background-color: #333333;
+border-color: #333333;
+}
+
+.button:focus {
+background-color: #7A7B85;
+border-color: #7A7B85;
+outline: none;
+}
+
+.roster-index {
+  list-style-type:none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 19em;
+}
+
+#roster-list {
+  list-style-type:none;
+   text-align: center;
+   margin: 0px;
+   padding: 0px;
 }

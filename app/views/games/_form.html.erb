@@ -34,7 +34,11 @@
     <%= f.text_field :opponent %>
   </div>
 
-  <div class= "actions">
-    <%= f.submit "Save Game" %>
+  <div class="text-center">
+    <div class= "actions">
+      <%= f.submit "Save Game" %>
+    </div>
+
+    <%= link_to "Cancel", games_path %>
   </div>
 <% end %>
