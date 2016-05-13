@@ -11,7 +11,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5.2'
 gem 'geocoder'
-gem 'dotenv-rails'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'devise_invitable', '~> 1.5.2'
 
@@ -24,6 +23,7 @@ group :development, :test do
   gem 'factory_girl_rails', "~> 4.0"
   gem 'pry-rails'
   gem 'launchy'
+  gem 'dotenv-rails'
 end
 
 group :development do
