@@ -1,6 +1,8 @@
 require 'pry'
 require 'coveralls'
 Coveralls.wear!('rails')
+require 'dotenv'
+Dotenv.load('.env')
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
