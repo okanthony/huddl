@@ -12,7 +12,20 @@ feature "admin invites player" do
     fill_in "Password", with: captain.password
     click_button "Sign In"
   end
-  
+  scenario "authenticated admin invites player" do
+    stub_env('SENDGRID_USERNAME', 'someusername')
+    stub_env('SENDGRID_PASSWORD', 'somepassword')
+    click_link "Invite"
+    fill_in "First Name", with: "Dee"
+    fill_in "Last Name", with: "Gordon"
+    fill_in "Email", with: "DeeGordon@Gordon.com"
+    click_button "Invite"
+
+    expect(page).to have_content("Player Invited")
+    expect(page).to have_content("Dee Gordon")
+    expect(page).to have_content("#{user2.first_name} #{user2.last_name}")
+  end
+
   scenario "authenticated admin does not specify required information" do
     click_link "Invite"
     click_button "Invite"
