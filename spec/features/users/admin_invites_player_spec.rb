@@ -13,8 +13,6 @@ feature "admin invites player" do
     click_button "Sign In"
   end
   scenario "authenticated admin invites player" do
-    stub_env('SENDGRID_USERNAME', 'someusername')
-    stub_env('SENDGRID_PASSWORD', 'somepassword')
     click_link "Invite"
     fill_in "First Name", with: "Dee"
     fill_in "Last Name", with: "Gordon"
