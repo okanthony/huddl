@@ -37,4 +37,5 @@ end
 group :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
+  gem 'stub_env'
 end
