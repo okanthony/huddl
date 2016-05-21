@@ -9,15 +9,16 @@ class HomeController < ApplicationController
       @quote = BASEBALL.sample
     end
     forecast_key = ENV["FORECAST_KEY"]
-    latitude = @game.latitude
-    longitude = @game.longitude
-    time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
-    forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
-    weather_description = forecast["currently"]["icon"]
-    precipitation = forecast["currently"]["precipProbability"] * 100
-    temp = forecast["currently"]["temperature"]
-    binding.pry
-    # render json: { weather_data: @weather_data }
+    if @game
+      latitude = @game.latitude
+      longitude = @game.longitude
+      time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
+      forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
+      weather_description = forecast["currently"]["icon"]
+      precipitation = forecast["currently"]["precipProbability"] * 100
+      temp = forecast["currently"]["temperature"]
+      # render json: { weather_data: @weather_data }
+    end
   end
 
   BASEBALL = [
