@@ -14,10 +14,11 @@ class HomeController < ApplicationController
       longitude = @game.longitude
       time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
       forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
-      weather_description = forecast["currently"]["icon"]
-      precipitation = forecast["currently"]["precipProbability"] * 100
-      temp = forecast["currently"]["temperature"]
-      # render json: { weather_data: @weather_data }
+      @weather_description = forecast["currently"]["icon"]
+      @temp = forecast["currently"]["temperature"].round(1)
+      if forecast["currently"]["precipProbability"]
+        @precipitation = ", #{(forecast["currently"]["precipProbability"] * 100).round}% chance of rain"
+      end
     end
   end
 
@@ -46,35 +47,3 @@ class HomeController < ApplicationController
     "'Honestly, at one time I though Babe Ruth was a cartoon character.' - Don Mattingly"
   ].freeze
 end
-
-# forecast_key = ENV["FORECASTIO_KEY"]
-#    forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude}")
-#    @sunset = Time.at(forecast["daily"]["data"][0]['sunsetTime']).strftime("%l:%M %p")
-#    @weather_data = []
-#    4.times do |n|
-#      temp = forecast["hourly"]["data"][n]["temperature"].round(0)
-#      pop = forecast["hourly"]["data"][n]["precipProbability"] * 100
-#      @weather_data << {
-#        temp: temp,
-#        pop: pop
-#      }
-#    end
-#    render json: { city: @city, state: @state, weather_data: @weather_data }
-
-# "currently"=>
-#   {"time"=>1463961600,
-#    "summary"=>"Light Rain",
-#    "icon"=>"rain",
-#    "precipIntensity"=>0.0227,
-#    "precipProbability"=>0.6,
-#    "precipType"=>"rain",
-#    "temperature"=>57.76,
-#    "apparentTemperature"=>57.76,
-#    "dewPoint"=>52.62,
-#    "humidity"=>0.83,
-#    "windSpeed"=>7.07,
-#    "windBearing"=>6,
-#    "visibility"=>10,
-#    "cloudCover"=>0.4,
-#    "pressure"=>1008.36,
-#    "ozone"=>363.08},
