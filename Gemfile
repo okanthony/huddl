@@ -13,6 +13,7 @@ gem 'devise', '~> 3.5.2'
 gem 'geocoder'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'devise_invitable', '~> 1.5.2'
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'
