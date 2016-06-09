@@ -65,7 +65,9 @@ class GamesController < PermissionsController
     longitude = @game.longitude
     time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
     forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
-    @temp = forecast["currently"]["temperature"].round
+    if forecast["currently"]["temperature"]
+      @temp = forecast["currently"]["temperature"].round
+    end
     if forecast["currently"]["icon"]
       @weather_description = forecast["currently"]["icon"]
     end
