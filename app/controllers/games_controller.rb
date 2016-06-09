@@ -70,7 +70,6 @@ class GamesController < PermissionsController
       @weather_description = forecast["currently"]["icon"]
       @precipitation = ", #{(forecast["currently"]["precipProbability"] * 100).round}% chance of rain"
     end
-    #unless time is before today?
   end
 
   def destroy
