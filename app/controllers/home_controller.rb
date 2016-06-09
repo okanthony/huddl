@@ -15,7 +15,7 @@ class HomeController < ApplicationController
       time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
       forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
       @weather_description = forecast["currently"]["icon"]
-      @temp = forecast["currently"]["temperature"].round(1)
+      @temp = forecast["currently"]["temperature"].round
       if forecast["currently"]["precipProbability"]
         @precipitation = ", #{(forecast["currently"]["precipProbability"] * 100).round}% chance of rain"
       end
