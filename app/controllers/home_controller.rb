@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < HelperController
   before_action :authenticate_user!
   def index
     @name = current_user.first_name
@@ -8,17 +8,8 @@ class HomeController < ApplicationController
     if @team.sport == "Baseball"
       @quote = BASEBALL.sample
     end
-    forecast_key = ENV["FORECAST_KEY"]
     if @game
-      latitude = @game.latitude
-      longitude = @game.longitude
-      time = "#{@game.game_day.strftime('%Y-%m-%d')}T#{@game.game_time.strftime('%H:%M:%S')}"
-      forecast = HTTParty.get("https://api.forecast.io/forecast/#{forecast_key}/#{latitude},#{longitude},#{time}")
-      @weather_description = forecast["currently"]["icon"]
-      @temp = forecast["currently"]["temperature"].round
-      if forecast["currently"]["precipProbability"]
-        @precipitation = ", #{(forecast["currently"]["precipProbability"] * 100).round}% chance of rain"
-      end
+      weather_data(@game)
     end
   end
 

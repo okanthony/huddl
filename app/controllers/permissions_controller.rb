@@ -1,4 +1,4 @@
-class PermissionsController < ApplicationController
+class PermissionsController < HelperController
   def require_permission
     session[:current_page] ||= request.referer
     unless current_user.try(:admin?)
