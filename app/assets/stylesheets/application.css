@@ -17,7 +17,7 @@
  */
 
 
- html, body {
+html, body {
   height: 100%;
   margin: 0;
   padding: 10;
@@ -148,4 +148,15 @@ outline: none;
 
 a {
     color: #7A7B85;
+}
+
+.title-area {
+  height:40px;
+}
+
+.title-area li {
+  height:40px;
+  text-align: left;
+  color: white;
+  padding: 5px;
 }
