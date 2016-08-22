@@ -3,7 +3,7 @@ require "rails_helper"
 feature "admin adds a game" do
   let!(:team1) { FactoryGirl.create(:team) }
   let!(:captain) { FactoryGirl.create(:user, admin: true, team: team1) }
-  let!(:game) { FactoryGirl.create(:game) }
+  let!(:game1) { FactoryGirl.create(:game) }
   let!(:user1) { FactoryGirl.create(:user, team: team1) }
 
   before(:each) do
@@ -21,14 +21,14 @@ feature "admin adds a game" do
     fill_in "City", with: "Boston"
     select "Massachusetts", from: "State"
     fill_in "Zip Code", with: 01223
-    fill_in "Date", with: "2016/05/13"
+    fill_in "Date", with: game1.game_day
     fill_in "Time", with: "6:00 PM"
     fill_in "Opponent", with: "Wildcats"
     click_button "Save Game"
 
-    expect(page).to have_content(game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y"))
-    expect(page).to have_content(game.game_time.strftime('%l:%M %p'))
-    expect(page).to have_content("vs. #{game.opponent}")
+    expect(page).to have_content(game1.game_day.strftime("%b #{game1.game_day.day.ordinalize}, %Y"))
+    expect(page).to have_content(game1.game_time.strftime('%l:%M %p'))
+    expect(page).to have_content("vs. #{game1.opponent}")
   end
 
   scenario "authenticated admin does not specify opponent" do
@@ -37,7 +37,7 @@ feature "admin adds a game" do
     fill_in "City", with: "Boston"
     select "Massachusetts", from: "State"
     fill_in "Zip Code", with: 01223
-    fill_in "Date", with: "2016/04/29"
+    fill_in "Date", with: game1.game_day
     fill_in "Time", with: "6:00 PM"
     click_button "Save Game"
 

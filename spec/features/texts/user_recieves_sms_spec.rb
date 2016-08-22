@@ -19,7 +19,7 @@ feature "authenticated user receives sms alert" do
     fill_in "City", with: "Boston"
     select "Massachusetts", from: "State"
     fill_in "Zip Code", with: 01223
-    fill_in "Date", with: "2016/05/13"
+    fill_in "Date", with: game1.game_day
     fill_in "Time", with: "6:00 PM"
     fill_in "Opponent", with: "Wildcats"
     click_button "Save Game"
@@ -34,11 +34,11 @@ feature "authenticated user receives sms alert" do
     within(:css, ".admin-buttons") do
       click_link "Edit"
     end
-    fill_in "Date", with: "2016/06/13"
+    fill_in "Date", with: game1.game_day
     click_button "Save Game"
 
     last_message = FakeSMS.messages.last
-    expect(last_message.body).to have_content("Jun 13th, 2016")
+    expect(last_message.body).to have_content(game1.game_day.strftime('%b %eth, %Y'))
     expect(last_message.body).to have_content("edited")
   end
 
