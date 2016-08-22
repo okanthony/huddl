@@ -31,10 +31,10 @@
           </ul>
 
           <ul class="right">
-            <li>
-              <%= link_to "Home", home_path %>
-            </li>
             <% if user_signed_in? %>
+              <li>
+                <%= link_to "Home", home_path %>
+              </li>
               <% if current_user.admin? %>
                 <li class="has-dropdown">
                   <a href="#">Captain</a>

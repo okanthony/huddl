@@ -13,7 +13,7 @@ FactoryGirl.define do
     city "Boston"
     state "MA"
     zip "01223"
-    game_day "2016/05/13"
+    game_day Date.today + 3
     game_time "6:00 PM"
     opponent "Wildcats"
     team

@@ -3,7 +3,8 @@ class GamesController < PermissionsController
 
   def index
     @team = current_user.team
-    @games = @team.games.order(game_day: :asc)
+    @upcoming_games = @team.games.where("game_day >= ?", Date.today).order("game_day ASC")
+    @previous_games = @team.games.where("game_day < ?", Date.today).order("game_day ASC")
     @access = current_user.try(:admin?)
   end
 
