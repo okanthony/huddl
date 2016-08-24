@@ -23,17 +23,19 @@
           <% end %>
         </li>
       <% end %>
-      <li class="roster-index"><h2>Previous Games</h2></li>
-      <% @previous_games.each do |game| %>
-        <li class="roster-index">
-          <a href ="/games/<%= game.id %>">
-            <%= game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y") %>
-          </a>
-          <% if !game.opponent.empty? %>
-            <%= "vs. #{game.opponent}" %>
-          <% end %>
-        </li>
-      <% end %>
     </ul>
   <% end %>
+  <ul>
+    <li class="roster-index"><h2>Previous Games</h2></li>
+    <% @previous_games.each do |game| %>
+      <li class="roster-index">
+        <a href ="/games/<%= game.id %>">
+          <%= game.game_day.strftime("%b #{game.game_day.day.ordinalize}, %Y") %>
+        </a>
+        <% if !game.opponent.empty? %>
+          <%= "vs. #{game.opponent}" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
