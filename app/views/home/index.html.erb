@@ -17,7 +17,7 @@
   <% end %>
 
   <% if @roster.size > 0 %>
-    <h4>Team Roster</h4></a>
+    <h4>Roster</h4></a>
     <ul id="roster-list">
       <% @roster.each do |roster| %>
         <li><%= roster.user.first_name %> <%= roster.user.last_name %></li>
